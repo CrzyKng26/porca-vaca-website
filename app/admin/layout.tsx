@@ -1,5 +1,6 @@
 import React from 'react'
 import Link from 'next/link'
+import { logout } from './actions'
 
 export default function AdminLayout({ children }: { children: React.ReactNode }) {
   return (
@@ -16,6 +17,12 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
           <Link href="/admin/mafia" className="text-sm tracking-widest hover:text-amber transition-colors">MEAT MAFIA</Link>
           <Link href="/admin/reservations" className="text-sm tracking-widest hover:text-amber transition-colors">RESERVATIONS</Link>
           <Link href="/" className="text-sm tracking-widest text-bone/30 hover:text-bone transition-colors mt-8">← BACK TO SITE</Link>
+          
+          <form action={logout} className="mt-4">
+            <button type="submit" className="text-sm tracking-widest text-red-500/70 hover:text-red-500 transition-colors uppercase">
+              Log Out
+            </button>
+          </form>
         </nav>
       </aside>
 
