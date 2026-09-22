@@ -1,0 +1,37 @@
+
+# Playwright
+node_modules/
+/test-results/
+/playwright-report/
+/blob-report/
+/playwright/.cache/
+/playwright/.auth/
+
+# Next.js
+.next/
+out/
+
+# Environment variables
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# Old project versions / local archives
+v1/
+v2/
+v2.1/
+v2.3/
+v2.4/
+v2.5/
+v3/
+*.tar
+
+# TypeScript
+*.tsbuildinfo
+
+# Local QA / generated files
+final_qa.png
+fullpage.png
+user_inputs.jsonl

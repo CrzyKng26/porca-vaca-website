@@ -1,0 +1,93 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background: #11100F; /* obsidian */
+  --foreground: #E8DECD; /* bone */
+}
+
+body {
+  background-color: var(--background);
+  color: var(--foreground);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* ─────────────────────────────────────────────
+   TYPOGRAPHY HELPERS
+───────────────────────────────────────────── */
+.text-balance {
+  text-wrap: balance;
+}
+
+.text-pretty {
+  text-wrap: pretty;
+}
+
+/* ─────────────────────────────────────────────
+   UTILITIES
+───────────────────────────────────────────── */
+.scrollbar-none {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+.scrollbar-none::-webkit-scrollbar {
+  display: none;
+}
+
+.img-zoom-wrap {
+  overflow: hidden;
+}
+.img-zoom-wrap img {
+  transition: transform 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.group:hover .img-zoom-wrap img {
+  transform: scale(1.05);
+}
+
+
+/* ─────────────────────────────────────────────
+   REDUCED MOTION
+───────────────────────────────────────────── */
+@media (prefers-reduced-motion: reduce) {
+  *, ::before, ::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+
+
+
+ /* RANGE SLIDER STYLES FOR DONENESS WIDGET */
+input[type='range']::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 24px;
+  height: 24px;
+  background: #E8DECD;
+  border: 2px solid #11100F;
+  border-radius: 50%;
+  cursor: pointer;
+  box-shadow: 0 0 10px rgba(0,0,0,0.5);
+  transition: transform 0.2s;
+}
+input[type='range']::-webkit-slider-thumb:hover {
+  transform: scale(1.2);
+}
+input[type='range']::-moz-range-thumb {
+  width: 24px;
+  height: 24px;
+  background: #E8DECD;
+  border: 2px solid #11100F;
+  border-radius: 50%;
+  cursor: pointer;
+  box-shadow: 0 0 10px rgba(0,0,0,0.5);
+  transition: transform 0.2s;
+}
+input[type='range']::-moz-range-thumb:hover {
+  transform: scale(1.2);
+}
