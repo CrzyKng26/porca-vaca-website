@@ -4,7 +4,7 @@ import Image from "next/image";
 import { login } from "./actions";
 
 export default async function LoginPage() {
-  const supabase = createClient();
+  const supabase = await createClient();
   const { data: { user } } = await supabase.auth.getUser();
 
   // Redirect if already logged in
