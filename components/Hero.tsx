@@ -35,13 +35,11 @@ export default function Hero() {
       <div className="entrance-meta"><span>PORCA & VACA / ALWARPET</span><span>PURE MEAT & FIRE</span></div>
       <div className="entrance-heading">
         <p className="entrance-kicker">BOLD CUTS. SLOW FIRE.</p>
-        <h1 aria-label="Porca and Vaca" className="flex items-center">
-          <span className="entrance-word" aria-hidden="true" style={{ width: '100%', maxWidth: '800px', display: 'flex' }}>
-            <span>
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img src="/brand/hero-text.png" alt="Porca & Vaca" className="w-full h-auto object-contain drop-shadow-2xl mix-blend-screen" />
-            </span>
-          </span>
+        <h1 aria-label="Porca and Vaca" className="w-full max-w-[80vw] md:max-w-[800px] mt-2 mb-6">
+          <div style={{ animation: 'entrance-type 1.45s 1.1s cubic-bezier(.2,.8,.2,1) both' }}>
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img src="/brand/hero-text.png" alt="Porca & Vaca" className="w-full h-auto object-contain drop-shadow-2xl" />
+          </div>
         </h1>
         <p className="entrance-signature">Serious <em>flavour.</em></p>
       </div>
