@@ -1,10 +1,11 @@
 'use client'
 
-import { useEffect, useState } from 'react'
+import { useEffect, useState, useRef } from 'react'
 import { ArrowDown, ArrowUpRight, Pause, Play, RotateCcw } from 'lucide-react'
 import './hero-entrance.css'
 
 export default function Hero() {
+  const sectionRef = useRef<HTMLElement>(null)
   const [replay, setReplay] = useState(0)
   const [finished, setFinished] = useState(false)
   const [skipped, setSkipped] = useState(false)
@@ -19,8 +20,18 @@ export default function Hero() {
     return () => preference.removeEventListener('change', sync)
   }, [])
 
+  useEffect(() => {
+    const handleScroll = () => {
+      if (!sectionRef.current) return
+      // Move up 0.45 pixels for every 1 pixel scrolled
+      sectionRef.current.style.setProperty('--title-travel', `-${window.scrollY * 0.45}px`)
+    }
+    window.addEventListener('scroll', handleScroll, { passive: true })
+    return () => window.removeEventListener('scroll', handleScroll)
+  }, [])
+
   return (
-    <section id="opening" key={replay} className={`film-hero entrance-hero ${skipped ? 'entrance-skipped' : ''} ${paused ? 'motion-paused' : ''}`} aria-label="Porca and Vaca">
+    <section ref={sectionRef} id="opening" key={replay} className={`film-hero entrance-hero ${skipped ? 'entrance-skipped' : ''} ${paused ? 'motion-paused' : ''}`} aria-label="Porca and Vaca">
       <div className="entrance-media film-image-wrap">
         <picture>
           <source media="(max-width: 767px)" srcSet="/house/interior.png" />

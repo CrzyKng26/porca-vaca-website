@@ -249,8 +249,14 @@ export default function TimeCraft() {
       </div>
 
       {/* --- MOBILE LAYOUT (Stacked, no scrolljacking) --- */}
-      <div className="block md:hidden w-full bg-obsidian py-20 px-6">
-        <div className="mb-12">
+      <div className="block md:hidden w-full bg-obsidian py-20 px-6 overflow-hidden">
+        <motion.div 
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-50px" }}
+          transition={{ duration: 0.6 }}
+          className="mb-12"
+        >
           <span className="text-[10px] tracking-superwide text-oxblood font-bold block mb-3">
             THE DRY AGING PROCESS
           </span>
@@ -258,11 +264,18 @@ export default function TimeCraft() {
             TIME DOES<br />
             <span className="italic text-bone/50">THE WORK.</span>
           </h2>
-        </div>
+        </motion.div>
 
         <div className="flex flex-col gap-12">
-          {agingStages.map((s) => (
-            <div key={s.days} className="relative">
+          {agingStages.map((s, idx) => (
+            <motion.div 
+              key={s.days}
+              initial={{ opacity: 0, y: 40 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-100px" }}
+              transition={{ duration: 0.6, ease: "easeOut", delay: 0.1 }}
+              className="relative"
+            >
               {/* Day header */}
               <div className="flex items-center gap-4 mb-4">
                 <span 
@@ -300,7 +313,7 @@ export default function TimeCraft() {
                   {s.description}
                 </p>
               </div>
-            </div>
+            </motion.div>
           ))}
         </div>
       </div>
