@@ -61,16 +61,27 @@ export default function Hero() {
       </div>
 
       {!skipped && <div className="entrance-liquid" aria-hidden="true" onAnimationEnd={event => { if (event.animationName === 'entrance-cover') setFinished(true) }}>
-        <svg className="liquid-art" viewBox="0 0 1440 1000" preserveAspectRatio="xMidYMid slice">
-          <defs>
-            <linearGradient id="liquid-wine" x1="0" y1="0" x2="1" y2="1"><stop stopColor="#170707"/><stop offset=".38" stopColor="#641b1c"/><stop offset=".57" stopColor="#300b0d"/><stop offset=".8" stopColor="#9a3c31"/><stop offset="1" stopColor="#1b0708"/></linearGradient>
-            <linearGradient id="liquid-rim" x1="0" y1="0" x2="1" y2="0"><stop stopColor="#bb7a53" stopOpacity="0"/><stop offset=".6" stopColor="#daab78" stopOpacity=".7"/><stop offset="1" stopColor="#6c2220" stopOpacity="0"/></linearGradient>
-          </defs>
-          <g className="liquid-left"><path fill="url(#liquid-wine)" d="M-250-150H1080C990 60 540 70 680 295S1160 540 785 690 835 1090 990 1180H-250Z"/><path fill="none" stroke="url(#liquid-rim)" strokeWidth="4" d="M1080-150C990 60 540 70 680 295S1160 540 785 690 835 1090 990 1180"/></g>
-          <g className="liquid-right"><path fill="url(#liquid-wine)" d="M1700-200H730C1200 80 905 265 1090 400S610 720 915 1040L1700 1200Z"/><path fill="none" stroke="url(#liquid-rim)" strokeWidth="3" d="M730-200C1200 80 905 265 1090 400S610 720 915 1040"/></g>
-          
-          
-        </svg>
+                <div className="liquid-art liquid-left">
+          <svg viewBox="0 0 1440 1000" preserveAspectRatio="xMidYMid slice" style={{ width: '100%', height: '100%', overflow: 'visible' }}>
+            <defs>
+              <linearGradient id="liquid-wine" x1="0" y1="0" x2="1" y2="1"><stop stopColor="#170707"/><stop offset=".38" stopColor="#641b1c"/><stop offset=".57" stopColor="#300b0d"/><stop offset=".8" stopColor="#9a3c31"/><stop offset="1" stopColor="#1b0708"/></linearGradient>
+              <linearGradient id="liquid-rim" x1="0" y1="0" x2="1" y2="0"><stop stopColor="#bb7a53" stopOpacity="0"/><stop offset=".6" stopColor="#daab78" stopOpacity=".7"/><stop offset="1" stopColor="#6c2220" stopOpacity="0"/></linearGradient>
+            </defs>
+            <path fill="url(#liquid-wine)" d="M-250-150H1080C990 60 540 70 680 295S1160 540 785 690 835 1090 990 1180H-250Z"/>
+            <path fill="none" stroke="url(#liquid-rim)" strokeWidth="4" d="M1080-150C990 60 540 70 680 295S1160 540 785 690 835 1090 990 1180"/>
+          </svg>
+        </div>
+
+        <div className="liquid-art liquid-right">
+          <svg viewBox="0 0 1440 1000" preserveAspectRatio="xMidYMid slice" style={{ width: '100%', height: '100%', overflow: 'visible' }}>
+            <defs>
+              <linearGradient id="liquid-wine-r" x1="0" y1="0" x2="1" y2="1"><stop stopColor="#170707"/><stop offset=".38" stopColor="#641b1c"/><stop offset=".57" stopColor="#300b0d"/><stop offset=".8" stopColor="#9a3c31"/><stop offset="1" stopColor="#1b0708"/></linearGradient>
+              <linearGradient id="liquid-rim-r" x1="0" y1="0" x2="1" y2="0"><stop stopColor="#bb7a53" stopOpacity="0"/><stop offset=".6" stopColor="#daab78" stopOpacity=".7"/><stop offset="1" stopColor="#6c2220" stopOpacity="0"/></linearGradient>
+            </defs>
+            <path fill="url(#liquid-wine-r)" d="M1700-200H730C1200 80 905 265 1090 400S610 720 915 1040L1700 1200Z"/>
+            <path fill="none" stroke="url(#liquid-rim-r)" strokeWidth="3" d="M730-200C1200 80 905 265 1090 400S610 720 915 1040"/>
+          </svg>
+        </div>
         <div className="entrance-prologue"><span>PORCA & VACA</span><p>It started<br/>with <em>a grill.</em></p><small>THEN CAME THE OBSESSION.</small></div>
       </div>}
     </section>
