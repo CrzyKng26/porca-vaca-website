@@ -7,7 +7,7 @@ import { TeamMember } from '@/data/team'
 
 export default function TeamSection({ initialTeam }: { initialTeam: TeamMember[] }) {
   const team = initialTeam || []
-  const ref = useRef<HTMLElement>(null)
+  const ref = useRef(null)
   const { scrollYProgress } = useScroll({ target: ref, offset: ['start end', 'end start'] })
   const y = useTransform(scrollYProgress, [0, 1], [30, -30])
 
@@ -26,7 +26,7 @@ export default function TeamSection({ initialTeam }: { initialTeam: TeamMember[]
           <p className="text-body-lg text-pitch/70 font-light mt-2">
             One kitchen, many hands – the people who bring the fire to life.
           </p>
-        </div>
+        </motion.div>
 
         {/* Team Grid */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
@@ -54,3 +54,4 @@ export default function TeamSection({ initialTeam }: { initialTeam: TeamMember[]
     </section>
   )
 }
+
