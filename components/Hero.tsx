@@ -1,63 +1,67 @@
-import React from 'react'
-import Link from 'next/link'
-import Embers from '@/components/Embers'
+'use client'
+
+import { useEffect, useState } from 'react'
+import { ArrowDown, ArrowUpRight, Pause, Play, RotateCcw } from 'lucide-react'
+import './hero-entrance.css'
 
 export default function Hero() {
+  const [replay, setReplay] = useState(0)
+  const [finished, setFinished] = useState(false)
+  const [skipped, setSkipped] = useState(false)
+  const [paused, setPaused] = useState(false)
+  const [reduced, setReduced] = useState(false)
+
+  useEffect(() => {
+    const preference = window.matchMedia('(prefers-reduced-motion: reduce)')
+    const sync = () => { setReduced(preference.matches); if (preference.matches) setFinished(true) }
+    sync()
+    preference.addEventListener('change', sync)
+    return () => preference.removeEventListener('change', sync)
+  }, [])
+
   return (
-    <section className="relative w-full h-[100dvh] min-h-[700px] flex flex-col justify-end p-6 md:p-12 overflow-hidden animate-fade-in">
-      {/* Background Image - Cinematic Fire/Meat */}
-      <div className="absolute inset-0 z-0 bg-charcoal">
-        <div className="absolute inset-0 animate-scale-in">
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img
-            src="/house/interior.png"
-            alt="Porca & Vaca Alwarpet Fire"
-            fetchPriority="high"
-            className="absolute inset-0 w-full h-full object-cover object-center opacity-60"
-          />
-        </div>
-        {/* Soft Vignette */}
-        <div className="absolute inset-0 bg-gradient-to-t from-obsidian via-obsidian/30 to-transparent" />
-        {/* Particle System */}
-        <Embers />
+    <section id="opening" key={replay} className={`film-hero entrance-hero ${skipped ? 'entrance-skipped' : ''} ${paused ? 'motion-paused' : ''}`} aria-label="Porca and Vaca">
+      <div className="entrance-media film-image-wrap">
+        <picture>
+          <source media="(max-width: 767px)" srcSet="/house/interior.png" />
+          <img className="entrance-poster" src="/house/interior.png" alt="Illustrative fire-lit beef on a charcoal grill" fetchPriority="high" width="1536" height="1024" />
+        </picture>
+      </div>
+      <div className="entrance-shade" />
+      <div className="entrance-heat" aria-hidden="true" />
+      <div className="entrance-smoke" aria-hidden="true" />
+      <div className="entrance-grain" aria-hidden="true" />
+
+      <div className="entrance-meta"><span>PORCA & VACA / ALWARPET</span><span>PURE MEAT & FIRE</span></div>
+      <div className="entrance-heading">
+        <p className="entrance-kicker">BOLD CUTS. SLOW FIRE.</p>
+        <h1 aria-label="Porca and Vaca"><span className="entrance-word" aria-hidden="true"><span>PORCA</span></span><span className="entrance-name-bottom" aria-hidden="true"><em>&</em><span className="entrance-word"><span>VACA.</span></span></span></h1>
+        <p className="entrance-signature">Serious <em>flavour.</em></p>
+      </div>
+      <div className="entrance-edge" aria-hidden="true">FIRE / CRAFT / OBSESSION</div>
+      <div className="entrance-bottom">
+        <a className="entrance-scroll" href="#story"><ArrowDown size={17} /><span>THE STORY<small>SCROLL TO EXPLORE</small></span></a>
+        <span className="entrance-location">ALWARPET, CHENNAI<br/><small>BUILT AROUND MEAT.</small></span>
+        <a className="cinema-button" href="#menu">EXPLORE THE MENU <ArrowUpRight size={18} /></a>
+      </div>
+      <div className="entrance-controls">
+        {!finished && !reduced ? <button onClick={() => { setSkipped(true); setFinished(true) }}>SKIP ENTRANCE ↗</button> : <button onClick={() => { setReplay(value => value + 1); setFinished(false); setSkipped(false); setPaused(false) }} disabled={reduced}><RotateCcw size={12} /> REPLAY ENTRANCE</button>}
+        <button aria-pressed={paused} aria-label={paused ? 'Play hero motion' : 'Pause hero motion'} onClick={() => setPaused(!paused)} disabled={reduced}>{paused ? <Play size={12} /> : <Pause size={12} />}<span>{paused ? 'PLAY' : 'PAUSE'}</span></button>
       </div>
 
-      {/* Content */}
-      <div className="relative z-10 w-full max-w-[1440px] mx-auto flex flex-col lg:flex-row lg:items-end justify-between gap-12">
-        
-        {/* Left Side: Typography */}
-        <div className="flex flex-col animate-slide-up">
-          <p className="text-label tracking-widest text-bone/60 mb-6 uppercase">
-            BUILT AROUND MEAT / ALWARPET CHENNAI
-          </p>
-          <h1 className="font-display text-display-lg leading-[0.85] text-bone">
-            PORCA<br />
-            &<br />
-            <span className="italic text-bone/90">VACA.</span>
-          </h1>
-        </div>
-
-        {/* Right Side: CTAs */}
-        <div className="flex flex-col items-start lg:items-end gap-6 animate-fade-in-delayed">
-          {/* Mafia Entry (Bold and prominent) */}
-          <Link 
-            href="/mafia"
-            className="w-full lg:w-auto text-center bg-blood hover:bg-amber text-bone px-8 py-3 text-label-lg tracking-superwide transition-colors duration-500 uppercase font-bold animate-pulse"
-          >
-            JOIN THE MEAT MAFIA ↗
-          </Link>
-
-          {/* Main CTAs */}
-          <div className="flex flex-col lg:flex-row gap-4 w-full lg:w-auto">
-            <a href="#menu" className="w-full lg:w-auto text-center border border-bone/20 hover:border-bone/60 bg-transparent text-bone px-8 py-4 text-label-lg tracking-widest transition-colors duration-500">
-              EXPLORE THE MENU
-            </a>
-            <a href="#reservation" className="w-full lg:w-auto text-center bg-bone hover:bg-bone/90 text-obsidian px-8 py-4 text-label-lg tracking-widest transition-colors duration-500">
-              BOOK A TABLE
-            </a>
-          </div>
-        </div>
-      </div>
+      {!skipped && <div className="entrance-liquid" aria-hidden="true" onAnimationEnd={event => { if (event.animationName === 'entrance-cover') setFinished(true) }}>
+        <svg className="liquid-art" viewBox="0 0 1440 1000" preserveAspectRatio="xMidYMid slice">
+          <defs>
+            <linearGradient id="liquid-wine" x1="0" y1="0" x2="1" y2="1"><stop stopColor="#170707"/><stop offset=".38" stopColor="#641b1c"/><stop offset=".57" stopColor="#300b0d"/><stop offset=".8" stopColor="#9a3c31"/><stop offset="1" stopColor="#1b0708"/></linearGradient>
+            <linearGradient id="liquid-rim" x1="0" y1="0" x2="1" y2="0"><stop stopColor="#bb7a53" stopOpacity="0"/><stop offset=".6" stopColor="#daab78" stopOpacity=".7"/><stop offset="1" stopColor="#6c2220" stopOpacity="0"/></linearGradient>
+          </defs>
+          <g className="liquid-left"><path fill="url(#liquid-wine)" d="M-250-150H1080C990 60 540 70 680 295S1160 540 785 690 835 1090 990 1180H-250Z"/><path fill="none" stroke="url(#liquid-rim)" strokeWidth="4" d="M1080-150C990 60 540 70 680 295S1160 540 785 690 835 1090 990 1180"/></g>
+          <g className="liquid-right"><path fill="url(#liquid-wine)" d="M1700-200H730C1200 80 905 265 1090 400S610 720 915 1040L1700 1200Z"/><path fill="none" stroke="url(#liquid-rim)" strokeWidth="3" d="M730-200C1200 80 905 265 1090 400S610 720 915 1040"/></g>
+          <ellipse className="liquid-drop drop-one" cx="785" cy="320" rx="35" ry="80" fill="url(#liquid-wine)" transform="rotate(-25 785 320)"/>
+          <ellipse className="liquid-drop drop-two" cx="570" cy="680" rx="22" ry="48" fill="url(#liquid-wine)"/>
+        </svg>
+        <div className="entrance-prologue"><span>PORCA & VACA</span><p>It started<br/>with <em>a grill.</em></p><small>THEN CAME THE OBSESSION.</small></div>
+      </div>}
     </section>
   )
 }
