@@ -1,7 +1,8 @@
 "use client";
 
 import { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { useRef } from "react";
+import { motion, AnimatePresence, useScroll, useTransform } from "framer-motion";
 import { MenuCategory, MenuItem } from "@/data/menu";
 
 export default function MenuEditorial({ 
@@ -11,6 +12,9 @@ export default function MenuEditorial({
   categories: MenuCategory[], 
   items: MenuItem[] 
 }) {
+  const ref = useRef(null);
+  const { scrollYProgress } = useScroll({ target: ref, offset: ['start end', 'end start'] });
+  const y = useTransform(scrollYProgress, [0, 1], [130, -130]);
   const [activeCat, setActiveCat] = useState<string>("all");
   const [activeFilter, setActiveFilter] = useState<string>("all");
 
@@ -32,10 +36,10 @@ export default function MenuEditorial({
   });
 
   return (
-    <section id="menu" className="relative w-full bg-obsidian py-24 md:py-32">
+    <section ref={ref} id="menu" className="relative w-full bg-obsidian py-24 md:py-32">
       {/* Header */}
       <div className="max-w-[1440px] mx-auto px-6 md:px-10 mb-12 flex flex-col md:flex-row justify-between items-start md:items-end gap-6">
-        <div>
+        <motion.div style={{ y }}>
           <h2 className="font-display text-5xl md:text-7xl lg:text-[6rem] leading-[0.85] tracking-tight uppercase text-bone">
             The <i className="italic font-light text-ember">Menu</i>
           </h2>
@@ -46,7 +50,7 @@ export default function MenuEditorial({
           >
             <span>↓</span> Download as PDF
           </a>
-        </div>
+        </motion.div>
         
         {/* Diet / Special Filters */}
         <div className="flex flex-wrap gap-2">

@@ -19,9 +19,9 @@ export default function StoryChapter() {
             IT STARTED<br />WITH A GRILL.<br />
             <span className="text-obsidian/60 italic font-light">THEN CAME THE OBSESSION.</span>
           </motion.h2>
-          <p className="text-body-lg text-obsidian/80 max-w-2xl leading-relaxed font-light">
+          <motion.p style={{ y }} className="text-body-lg text-obsidian/80 max-w-2xl leading-relaxed font-light">
             Porca & Vaca was born from one straightforward conviction: that pork and beef, done right, are among the most satisfying things you can eat. The name says it all — <span className="font-bold">Porca</span> (pig) and <span className="font-bold">Vaca</span> (cow). Two animals. Endless possibilities. Every plate here is built for people who take their flavour seriously.
-          </p>
+          </motion.p>
         </div>
 
         <div className="md:col-span-4 flex flex-col gap-12 border-l border-obsidian/20 pl-8 justify-center">

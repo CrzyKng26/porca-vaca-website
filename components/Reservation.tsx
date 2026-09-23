@@ -1,6 +1,7 @@
 'use client'
 
-import React, { useState } from 'react'
+import React, { useState, useRef } from 'react'
+import { motion, useScroll, useTransform } from 'framer-motion'
 
 interface ResState {
   name: string
@@ -13,6 +14,9 @@ interface ResState {
 }
 
 export default function Reservation() {
+  const ref = useRef(null);
+  const { scrollYProgress } = useScroll({ target: ref, offset: ['start end', 'end start'] });
+  const y = useTransform(scrollYProgress, [0, 1], [130, -130]);
   const [res, setRes] = useState<ResState>({
     name: '',
     phone: '',
@@ -47,7 +51,7 @@ export default function Reservation() {
     'h-12 px-4 bg-obsidian border border-bone/15 text-bone text-body-sm outline-none focus:border-bone/50 transition-colors duration-300 w-full cursor-pointer'
 
   return (
-    <section id="reservation" className="relative w-full bg-charcoal border-t border-bone/10">
+    <section ref={ref} id="reservation" className="relative w-full bg-charcoal border-t border-bone/10">
       <div className="max-w-[1600px] mx-auto grid lg:grid-cols-[1.05fr_0.95fr]">
 
         {/* LEFT — Cinematic Image Panel */}
@@ -59,7 +63,7 @@ export default function Reservation() {
             className="absolute inset-0 w-full h-full object-cover object-center brightness-[0.45]"
           />
           <div className="absolute inset-0 bg-gradient-to-t from-charcoal via-charcoal/20 to-transparent" />
-          <div className="absolute bottom-8 left-8 right-8">
+          <motion.div style={{ y }} className="absolute bottom-8 left-8 right-8">
             <div className="inline-flex border border-bone/20 px-3 py-1.5 text-label tracking-widest uppercase text-bone/70 mb-6">
               Limited Seating Each Evening — 32 covers
             </div>
@@ -72,7 +76,7 @@ export default function Reservation() {
               <span>·</span>
               <span>Open Daily 12PM – 11PM</span>
             </div>
-          </div>
+          </motion.div>
         </div>
 
         {/* RIGHT — Form Panel */}

@@ -1,7 +1,7 @@
 'use client'
 
-import React, { useState } from 'react'
-import { motion, AnimatePresence } from 'framer-motion'
+import React, { useState, useRef } from 'react'
+import { motion, AnimatePresence, useScroll, useTransform } from 'framer-motion'
 import CutCompass from './CutCompass'
 import FireWoodWidget from './FireWoodWidget'
 import DonenessWidget from './DonenessWidget'
@@ -171,6 +171,9 @@ function PitCalculator() {
 }
 
 export default function MeatScienceDashboard() {
+  const ref = useRef(null);
+  const { scrollYProgress } = useScroll({ target: ref, offset: ['start end', 'end start'] });
+  const y = useTransform(scrollYProgress, [0, 1], [130, -130]);
   const [activeTab, setActiveTab] = useState<TabId>('calculator')
 
   const getGlowColor = () => {
@@ -183,7 +186,7 @@ export default function MeatScienceDashboard() {
   }
 
   return (
-    <section id="meat-science" className="relative w-full bg-pitch flex flex-col py-12 md:py-20 overflow-hidden">
+    <section ref={ref} id="meat-science" className="relative w-full bg-pitch flex flex-col py-12 md:py-20 overflow-hidden">
       {/* Dynamic Ambient Glow */}
       <div
         className="absolute inset-0 z-0 transition-colors duration-1000 ease-in-out blur-[150px] pointer-events-none"
@@ -194,7 +197,7 @@ export default function MeatScienceDashboard() {
       <div className="w-full max-w-[1440px] mx-auto px-6 md:px-12 flex flex-col gap-8 relative z-10">
         
         {/* Header & Tabs */}
-        <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 border-b border-coal pb-6">
+        <motion.div style={{ y }} className="flex flex-col md:flex-row md:items-end justify-between gap-6 border-b border-coal pb-6">
           <div className="flex flex-col gap-2">
             <span className="text-[10px] tracking-superwide text-amber uppercase">The Science of Meat</span>
             <h2 className="font-display text-4xl md:text-display-sm text-cream leading-none">
@@ -222,7 +225,7 @@ export default function MeatScienceDashboard() {
               )
             })}
           </div>
-        </div>
+        </motion.div>
 
         {/* Content Area */}
         <div className="relative w-full bg-smoke border border-coal" style={{ minHeight: '500px' }}>

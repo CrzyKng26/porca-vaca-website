@@ -52,6 +52,8 @@ export default function TimeCraft() {
     target: sectionRef,
     offset: ['start start', 'end end']
   })
+  const { scrollYProgress: parallaxProgress } = useScroll({ target: sectionRef, offset: ['start end', 'end start'] });
+  const parallaxY = useTransform(parallaxProgress, [0, 1], [130, -130]);
 
   const [activeIdx, setActiveIdx] = useState(0)
 
@@ -251,6 +253,7 @@ export default function TimeCraft() {
       {/* --- MOBILE LAYOUT (Stacked, no scrolljacking) --- */}
       <div className="block md:hidden w-full bg-obsidian py-20 px-6 overflow-hidden">
         <motion.div 
+          style={{ y: parallaxY }}
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-50px" }}
