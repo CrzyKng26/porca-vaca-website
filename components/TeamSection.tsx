@@ -1,18 +1,22 @@
 'use client'
 
-import React from 'react'
+import React, { useRef } from 'react'
 import Image from 'next/image'
+import { motion, useScroll, useTransform } from 'framer-motion'
 import { TeamMember } from '@/data/team'
 
 export default function TeamSection({ initialTeam }: { initialTeam: TeamMember[] }) {
   const team = initialTeam || []
-  
+  const ref = useRef<HTMLElement>(null)
+  const { scrollYProgress } = useScroll({ target: ref, offset: ['start end', 'end start'] })
+  const y = useTransform(scrollYProgress, [0, 1], [30, -30])
+
   return (
-    <section id="team" className="w-full bg-cream text-pitch py-24">
+    <section ref={ref} id="team" className="w-full bg-cream text-pitch py-24">
       <div className="w-full max-w-[1440px] mx-auto px-6 md:px-12 flex flex-col gap-16">
         
         {/* Header */}
-        <div className="flex flex-col gap-4">
+        <motion.div style={{ y }} className="flex flex-col gap-4">
           <span className="text-label tracking-widest text-amber uppercase">
             THE PEOPLE BEHIND PORCA & VACA.
           </span>

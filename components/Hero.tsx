@@ -24,7 +24,7 @@ export default function Hero() {
     const handleScroll = () => {
       if (!sectionRef.current) return
       // Move up 0.45 pixels for every 1 pixel scrolled
-      sectionRef.current.style.setProperty('--title-travel', `-${window.scrollY * 0.45}px`)
+      sectionRef.current.style.setProperty('--title-travel', `-${window.scrollY * 0.2}px`)
     }
     window.addEventListener('scroll', handleScroll, { passive: true })
     return () => window.removeEventListener('scroll', handleScroll)
