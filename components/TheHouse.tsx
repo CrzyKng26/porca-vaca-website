@@ -1,17 +1,22 @@
 'use client'
 
-import React from 'react'
+import React, { useRef } from 'react'
 import Image from 'next/image'
-import { motion } from 'framer-motion'
+import { motion, useScroll, useTransform } from 'framer-motion'
 
 export default function TheHouse() {
+  const ref = useRef<HTMLElement>(null)
+  const { scrollYProgress } = useScroll({ target: ref, offset: ['start end', 'end start'] })
+  const y = useTransform(scrollYProgress, [0, 1], [60, -60])
+
   return (
-    <section id="house" className="relative w-full bg-bone py-16 md:py-48 px-6 md:px-12 border-t border-obsidian/10 overflow-hidden">
+    <section ref={ref} id="house" className="relative w-full bg-bone py-16 md:py-48 px-6 md:px-12 border-t border-obsidian/10 overflow-hidden">
       
       <div className="max-w-[1440px] mx-auto relative z-10">
         
         {/* Header */}
         <motion.div 
+          style={{ y }}
           initial={{ opacity: 0, filter: 'blur(10px) brightness(2)', scale: 0.9 }}
           whileInView={{ opacity: 1, filter: 'blur(0px) brightness(1)', scale: 1 }}
           viewport={{ once: true, margin: "-10%" }}
