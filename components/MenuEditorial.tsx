@@ -14,7 +14,7 @@ export default function MenuEditorial({
 }) {
   const ref = useRef(null);
   const { scrollYProgress } = useScroll({ target: ref, offset: ['start end', 'end start'] });
-  const y = useTransform(scrollYProgress, [0, 1], [130, -130]);
+  const y = useTransform(scrollYProgress, [0, 1], [40, -40]);
   const [activeCat, setActiveCat] = useState<string>("all");
   const [activeFilter, setActiveFilter] = useState<string>("all");
 
@@ -39,7 +39,7 @@ export default function MenuEditorial({
     <section ref={ref} id="menu" className="relative w-full bg-obsidian py-24 md:py-32">
       {/* Header */}
       <div className="max-w-[1440px] mx-auto px-6 md:px-10 mb-12 flex flex-col md:flex-row justify-between items-start md:items-end gap-6">
-        <motion.div style={{ y }}>
+        <motion.div style={{ y }} className="mb-6 md:mb-0">
           <h2 className="font-display text-5xl md:text-7xl lg:text-[6rem] leading-[0.85] tracking-tight uppercase text-bone">
             The <i className="italic font-light text-ember">Menu</i>
           </h2>

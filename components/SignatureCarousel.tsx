@@ -11,7 +11,7 @@ interface SignatureCarouselProps {
 export default function SignatureCarousel({ initialImages }: SignatureCarouselProps) {
   const scrollRef = useRef(null);
   const { scrollYProgress } = useScroll({ target: scrollRef, offset: ['start end', 'end start'] });
-  const parallaxY = useTransform(scrollYProgress, [0, 1], [130, -130]);
+  const parallaxY = useTransform(scrollYProgress, [0, 1], [40, -40]);
   const baseX = useMotionValue(0)
   const [isHovered, setIsHovered] = useState(false)
   const [isDragging, setIsDragging] = useState(false)
@@ -65,7 +65,7 @@ export default function SignatureCarousel({ initialImages }: SignatureCarouselPr
         <span className="font-display text-[20vw] leading-none whitespace-nowrap text-bone">SIGNATURE</span>
       </div>
 
-      <motion.div style={{ y: parallaxY }} className="mb-16 px-6 md:px-12 text-center relative z-10">
+      <motion.div style={{ y: parallaxY }} className="mb-24 px-6 md:px-12 text-center relative z-10">
         <h2 className="font-display text-4xl md:text-5xl text-bone mb-4">SIGNATURE RESERVE</h2>
         <p className="text-label tracking-widest text-bone/50 uppercase">The inner circle</p>
         <p className="mt-3 text-[10px] tracking-widest uppercase text-bone/30">← Swipe or drag to explore →</p>

@@ -53,7 +53,7 @@ export default function TimeCraft() {
     offset: ['start start', 'end end']
   })
   const { scrollYProgress: parallaxProgress } = useScroll({ target: sectionRef, offset: ['start end', 'end start'] });
-  const parallaxY = useTransform(parallaxProgress, [0, 1], [130, -130]);
+  const parallaxY = useTransform(parallaxProgress, [0, 1], [40, -40]);
 
   const [activeIdx, setActiveIdx] = useState(0)
 
@@ -153,7 +153,7 @@ export default function TimeCraft() {
 
             {/* Left: stage list */}
             <div className="w-[38%] flex flex-col gap-7">
-              <div className="mb-10">
+              <div className="mb-20">
                 <span className="text-label tracking-superwide text-oxblood font-bold block mb-4">
                   THE DRY AGING PROCESS
                 </span>

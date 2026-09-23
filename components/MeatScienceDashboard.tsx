@@ -173,7 +173,7 @@ function PitCalculator() {
 export default function MeatScienceDashboard() {
   const ref = useRef(null);
   const { scrollYProgress } = useScroll({ target: ref, offset: ['start end', 'end start'] });
-  const y = useTransform(scrollYProgress, [0, 1], [130, -130]);
+  const y = useTransform(scrollYProgress, [0, 1], [40, -40]);
   const [activeTab, setActiveTab] = useState<TabId>('calculator')
 
   const getGlowColor = () => {

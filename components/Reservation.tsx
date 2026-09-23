@@ -16,7 +16,7 @@ interface ResState {
 export default function Reservation() {
   const ref = useRef(null);
   const { scrollYProgress } = useScroll({ target: ref, offset: ['start end', 'end start'] });
-  const y = useTransform(scrollYProgress, [0, 1], [130, -130]);
+  const y = useTransform(scrollYProgress, [0, 1], [40, -40]);
   const [res, setRes] = useState<ResState>({
     name: '',
     phone: '',
@@ -63,7 +63,7 @@ export default function Reservation() {
             className="absolute inset-0 w-full h-full object-cover object-center brightness-[0.45]"
           />
           <div className="absolute inset-0 bg-gradient-to-t from-charcoal via-charcoal/20 to-transparent" />
-          <motion.div style={{ y }} className="absolute bottom-8 left-8 right-8">
+          <motion.div style={{ y }} className="absolute bottom-20 left-8 right-8">
             <div className="inline-flex border border-bone/20 px-3 py-1.5 text-label tracking-widest uppercase text-bone/70 mb-6">
               Limited Seating Each Evening — 32 covers
             </div>
