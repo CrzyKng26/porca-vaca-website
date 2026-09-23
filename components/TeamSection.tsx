@@ -9,7 +9,7 @@ export default function TeamSection({ initialTeam }: { initialTeam: TeamMember[]
   const team = initialTeam || []
   const ref = useRef(null)
   const { scrollYProgress } = useScroll({ target: ref, offset: ['start end', 'end start'] })
-  const y = useTransform(scrollYProgress, [0, 1], [40, -40])
+  const y = useTransform(scrollYProgress, [0, 1], [70, -70])
 
   return (
     <section ref={ref} id="team" className="w-full bg-cream text-pitch py-24">

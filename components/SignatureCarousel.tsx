@@ -11,7 +11,7 @@ interface SignatureCarouselProps {
 export default function SignatureCarousel({ initialImages }: SignatureCarouselProps) {
   const scrollRef = useRef(null);
   const { scrollYProgress } = useScroll({ target: scrollRef, offset: ['start end', 'end start'] });
-  const parallaxY = useTransform(scrollYProgress, [0, 1], [40, -40]);
+  const parallaxY = useTransform(scrollYProgress, [0, 1], [70, -70]);
   const baseX = useMotionValue(0)
   const [isHovered, setIsHovered] = useState(false)
   const [isDragging, setIsDragging] = useState(false)

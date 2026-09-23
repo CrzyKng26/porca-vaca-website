@@ -53,7 +53,7 @@ export default function TimeCraft() {
     offset: ['start start', 'end end']
   })
   const { scrollYProgress: parallaxProgress } = useScroll({ target: sectionRef, offset: ['start end', 'end start'] });
-  const parallaxY = useTransform(parallaxProgress, [0, 1], [40, -40]);
+  const parallaxY = useTransform(parallaxProgress, [0, 1], [70, -70]);
 
   const [activeIdx, setActiveIdx] = useState(0)
 

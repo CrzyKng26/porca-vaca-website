@@ -14,7 +14,7 @@ export default function MenuEditorial({
 }) {
   const ref = useRef(null);
   const { scrollYProgress } = useScroll({ target: ref, offset: ['start end', 'end start'] });
-  const y = useTransform(scrollYProgress, [0, 1], [40, -40]);
+  const y = useTransform(scrollYProgress, [0, 1], [70, -70]);
   const [activeCat, setActiveCat] = useState<string>("all");
   const [activeFilter, setActiveFilter] = useState<string>("all");
 

@@ -7,7 +7,7 @@ import { motion, useScroll, useTransform } from 'framer-motion'
 export default function TheHouse() {
   const ref = useRef<HTMLElement>(null)
   const { scrollYProgress } = useScroll({ target: ref, offset: ['start end', 'end start'] })
-  const y = useTransform(scrollYProgress, [0, 1], [40, -40])
+  const y = useTransform(scrollYProgress, [0, 1], [70, -70])
 
   return (
     <section ref={ref} id="house" className="relative w-full bg-bone py-16 md:py-48 px-6 md:px-12 border-t border-obsidian/10 overflow-hidden">
