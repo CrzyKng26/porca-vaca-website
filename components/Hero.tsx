@@ -68,8 +68,8 @@ export default function Hero() {
           </defs>
           <g className="liquid-left"><path fill="url(#liquid-wine)" d="M-250-150H1080C990 60 540 70 680 295S1160 540 785 690 835 1090 990 1180H-250Z"/><path fill="none" stroke="url(#liquid-rim)" strokeWidth="4" d="M1080-150C990 60 540 70 680 295S1160 540 785 690 835 1090 990 1180"/></g>
           <g className="liquid-right"><path fill="url(#liquid-wine)" d="M1700-200H730C1200 80 905 265 1090 400S610 720 915 1040L1700 1200Z"/><path fill="none" stroke="url(#liquid-rim)" strokeWidth="3" d="M730-200C1200 80 905 265 1090 400S610 720 915 1040"/></g>
-          <ellipse className="liquid-drop drop-one" cx="785" cy="320" rx="35" ry="80" fill="url(#liquid-wine)" transform="rotate(-25 785 320)"/>
-          <ellipse className="liquid-drop drop-two" cx="570" cy="680" rx="22" ry="48" fill="url(#liquid-wine)"/>
+          
+          
         </svg>
         <div className="entrance-prologue"><span>PORCA & VACA</span><p>It started<br/>with <em>a grill.</em></p><small>THEN CAME THE OBSESSION.</small></div>
       </div>}

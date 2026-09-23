@@ -6,7 +6,7 @@ import { motion, useScroll, useTransform } from 'framer-motion'
 export default function StoryChapter() {
   const ref = useRef<HTMLElement>(null)
   const { scrollYProgress } = useScroll({ target: ref, offset: ['start end', 'end start'] })
-  const y = useTransform(scrollYProgress, [0, 1], [20, -20])
+  const y = useTransform(scrollYProgress, [0, 1], [150, -150])
 
   return (
     <section ref={ref} id="story" className="relative z-20 w-full bg-bone py-24 md:py-40 px-6 md:px-12 flex flex-col items-center justify-center border-t border-obsidian/10">
